@@ -1,0 +1,101 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Cadastro de Pets',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: CadastroPets(),
+    );
+  }
+}
+
+class CadastroPets extends StatelessWidget {
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Cadastro de Pets'),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Form(
+          key: _formKey,
+          child: ListView(
+            children: [
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Nome do Pet'),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Por favor, insira o nome do pet';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Contato'),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Por favor, insira o contato';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Endereço'),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Por favor, insira o endereço';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Telefone'),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Por favor, insira o telefone';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Cidade'),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Por favor, insira a cidade';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Observação'),
+                maxLines: 3,
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState.validate()) {
+                    // Processar o formulário aqui
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Cadastro realizado')));
+                  }
+                },
+                child: Text('Cadastrar'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
